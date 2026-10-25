@@ -74,12 +74,12 @@ while True:
         choice = int(input())
 
         if choice not in (1, 2, 3, 4):
-            print("Choose only 1, 2, 3, or 4 options :", end="")
+            print("Choose only 1, 2, 3, or 4 options :")
             continue
 
 
     except ValueError:
-        print("Invalid value. Try again! : ", end="")
+        print("Invalid value. Try again! : ")
         continue
 
 
@@ -121,7 +121,7 @@ while True:
                 # i forgot this logic to implement after a code review i make it here    
                 if withdrawMoney > currentBalance:
                     print("Insufficient Balance.")
-                    print(f"CUrrent Balance: rs. {currentBalance}")
+                    print(f"Current Balance: rs. {currentBalance}")
                     print("Again enter withdrawal amount: ", end="")
                     continue
 
