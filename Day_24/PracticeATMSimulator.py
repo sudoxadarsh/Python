@@ -126,12 +126,13 @@ while True:
                     continue
 
 
-                withdrawMoney -= currentBalance
+                currentBalance -= withdrawMoney
 
                 break
 
             except ValueError:
                 print("Invalid input. Try again! :", end="")
+                continue
 
         print("WIthdrawal successful!")
         print(f"Current Balance: rs. {currentBalance}")
