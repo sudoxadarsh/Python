@@ -101,7 +101,7 @@ while True:
                 break
 
             except ValueError:
-                print("Invalid input. Try again! :", end="")
+                print("Invalid input. Try again! : ", end="")
                 continue
 
 
@@ -109,7 +109,11 @@ while True:
         print(f"Current Balance: rs. {currentBalance}")
 
     elif choice == 3:
-        print("Enter amout for withdrawal: ", end="")
+        if currentBalance <= 0:
+            print(f"Current Balance: {currentBalance}")
+            print(f"Deposit Money First")
+            continue
+        print("Enter amount for withdrawal: ", end="")
         while True:
             try:
                 withdrawMoney = int(input())
@@ -131,7 +135,7 @@ while True:
                 break
 
             except ValueError:
-                print("Invalid input. Try again! :", end="")
+                print("Invalid input. Try again! : ", end="")
                 continue
 
         print("WIthdrawal successful!")
