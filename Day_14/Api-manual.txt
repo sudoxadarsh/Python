@@ -1,0 +1,209 @@
+API PRACTICE MANUAL
+===================
+
+This document explains the FastAPI practice project in Api.py.
+
+
+1. WHAT THIS CODE DOES
+----------------------
+
+Api.py creates a small web API using FastAPI. An API allows other programs,
+websites, or mobile applications to communicate with this Python code through
+HTTP requests.
+
+The application currently has two GET endpoints:
+
+	GET /
+	GET /csv
+
+
+2. IMPORTANT PARTS OF THE CODE
+------------------------------
+
+	from fastapi import FastAPI
+
+Imports FastAPI, the framework used to create the API server and routes.
+
+	from fastapi import Response
+
+Imports Response so the code can return manually created text and specify its
+content type.
+
+	app = FastAPI()
+
+Creates the FastAPI application object. Uvicorn uses the object named "app"
+to start the server.
+
+	@app.get("/")
+	def root():
+		return {"message": "Hello from API"}
+
+The decorator registers the root route. When a client sends a GET request to
+the root URL, the function runs and returns a Python dictionary. FastAPI
+automatically converts the dictionary to JSON.
+
+	@app.get("/csv")
+	def csv():
+		csv_content = "name, age, city\nAlice, 30, nyc\nBob, 25, la"
+		return Response(content=csv_content, media_type="text/plain")
+
+This route returns text that is formatted like CSV data. The records are
+currently hard-coded, so every request returns the same two people.
+
+The content is CSV-shaped, but the current media type is "text/plain". For a
+real CSV response, use media_type="text/csv" so browsers and API clients can
+identify the response correctly.
+
+
+3. INSTALLATION AND RUNNING
+---------------------------
+
+Install the required packages:
+
+	pip install fastapi uvicorn
+
+Open a terminal in this Day_14 directory and run:
+
+	uvicorn Api:app --reload
+
+The command means:
+
+	Api       -> the filename Api.py, without the .py extension
+	app       -> the FastAPI object created inside Api.py
+	--reload  -> restart the server automatically after code changes
+
+The server normally runs at:
+
+	http://127.0.0.1:8000
+
+
+4. TRYING THE ENDPOINTS
+-----------------------
+
+Open these URLs in a browser:
+
+	http://127.0.0.1:8000/
+
+Expected JSON response:
+
+	{"message": "Hello from API"}
+
+Open:
+
+	http://127.0.0.1:8000/csv
+
+Expected response:
+
+	name, age, city
+	Alice, 30, nyc
+	Bob, 25, la
+
+FastAPI also creates interactive documentation automatically:
+
+	http://127.0.0.1:8000/docs
+
+An alternative documentation page is available at:
+
+	http://127.0.0.1:8000/redoc
+
+
+5. WHERE THIS PATTERN IS USEFUL
+--------------------------------
+
+This project is a starting point for:
+
+	- Backend APIs for websites and mobile applications
+	- Returning data to a JavaScript frontend
+	- APIs connected to a database
+	- CSV report generation and downloads
+	- Internal business tools
+	- Microservices that communicate with other applications
+	- Machine-learning prediction services
+	- Integrations between different systems
+
+The main idea is: a client sends a request, Python processes it, and the API
+returns a response such as JSON, text, a file, or an error.
+
+
+6. GOOD NEXT STEPS
+------------------
+
+Step 1: Return proper CSV
+
+Change the CSV response to:
+
+	return Response(
+		content=csv_content,
+		media_type="text/csv",
+		headers={"Content-Disposition": "attachment; filename=people.csv"}
+	)
+
+This encourages the browser to download the response as people.csv.
+
+Step 2: Add query parameters
+
+	@app.get("/greet")
+	def greet(name: str = "Guest"):
+		return {"message": f"Hello, {name}"}
+
+Example request:
+
+	http://127.0.0.1:8000/greet?name=Alice
+
+Step 3: Replace hard-coded data with a list
+
+	people = [
+		{"name": "Alice", "age": 30, "city": "nyc"},
+		{"name": "Bob", "age": 25, "city": "la"},
+	]
+
+Then create routes to list people, find one person, add a person, update a
+person, and delete a person. These operations are commonly called CRUD:
+Create, Read, Update, and Delete.
+
+Step 4: Validate incoming data with Pydantic
+
+	from pydantic import BaseModel
+
+	class Person(BaseModel):
+		name: str
+		age: int
+		city: str
+
+Pydantic checks that request data has the expected fields and types.
+
+Step 5: Add a database
+
+Store data in SQLite, PostgreSQL, or MongoDB instead of an in-memory Python
+list. A database keeps data after the server stops and supports larger data
+sets.
+
+Step 6: Add error handling
+
+Return useful HTTP errors, such as 404 when a person cannot be found, rather
+than allowing unexpected failures.
+
+Step 7: Add authentication
+
+Protect private routes with API keys, login sessions, or JWT tokens. Public
+and private endpoints should be clearly separated.
+
+Step 8: Write tests
+
+Test the root route, CSV route, validation rules, successful CRUD operations,
+and error responses. Tests make future changes safer.
+
+
+7. CURRENT LIMITATIONS
+----------------------
+
+	- The data is hard-coded.
+	- There are no POST, PUT, PATCH, or DELETE routes yet.
+	- There is no database.
+	- There is no input validation beyond the current route definitions.
+	- There is no authentication or authorization.
+	- The CSV media type should be changed from text/plain to text/csv.
+
+Even with these limitations, Api.py demonstrates the essential API concepts:
+creating an application, registering routes, receiving requests, and returning
+responses.

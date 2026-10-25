@@ -1,0 +1,69 @@
+lists manipulation:
+>> insert element:
+append() & extend():
+
+- x=[]
+-for i in range(1,11):
+-   x.append(i*i)
+-
+-print(x)
+-
+-y = [3,4]
+-
+-x.append(y)
+-
+-print(x)
+-
+-x.extend(y)
+-
+-print(x) 
+
+>> remove element: 
+
+1. remove()
+
+2. del()
+
+
+date: 12 september 2026
+Q. WAP to compare to list which contains equal no. of element if yes same len otherwise differe len.
+
+Q. WAP to sort given list with the help of sorted method and also reverse it.
+
+
+=> functions used in list:
+
+count()
+min()
+max()
+sorted(argument, reverse = true)
+
+sort()/ in.placesort()'never changes order of same elements in the array, list, etc'
+
+reverse()
+
+copy()
+
+=> difference between sort and sorting:
+
+- sort changes the original list.
+- sorted makes a copy of string and prepare new list in sorted order.
+
+Looping through list:
+
+- basic loop :
+
+numbers = [10,20,30,40]
+
+for item in numbers:
+    print(item)
+
+enumerate()
+
+for index, value in enumerate(numbers):
+    print(index, value)
+
+
+List Comprehension:
+
+Q. WAP to find square of each element in given list.

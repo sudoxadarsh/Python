@@ -1,0 +1,32 @@
+date: 29th august 2026
+
+-> Changing case:
+
+1. upper()
+
+2. lower()
+
+3. capitalize
+
+4. title 
+
+5. swapcase(): reversing the cases of string if in upper so made it to lower
+ if lower so made it upper
+
+-> Removing Spaces:
+
+1. strip()
+
+2. lstrip()
+
+3. rstrip()
+
+-> Searching in string:
+
+1. find() -> thiis method used to search any string or characters in a given string and it
+return the index of it
+
+2. index() -> this also a method
+
+
+-> WAP to find the frequency of character in the given word

@@ -1,0 +1,60 @@
+6. Debugging
+
+Debugging is the process of identifying, analyzing, and fixing errors (bugs) in a program.
+
+Three common types of errors:
+
+Syntax errors: Violations of Python's syntax rules.
+
+Runtime errors: Errors that occur while the program is executing.
+
+Logical errors: The program runs but produces incorrect results.
+
+Example of a logical error:
+
+a = 10
+b = 5
+
+result = a - b  # Incorrect if addition was intended
+print(result)
+
+Basic debugging using print():
+
+a = 10
+b = 5
+
+print("a =", a)
+print("b =", b)
+
+result = a + b
+print("Result =", result)
+
+Python also provides the built-in pdb debugger and IDE debugging tools to inspect variables and execute code step by step.
+
+7. Basic Time & Space Complexity
+
+Time complexity measures how an algorithm's running time grows as the input size increases.
+
+Space complexity measures how much additional memory an algorithm uses as input size increases.
+
+
+
+
+
+Quick revision
+
+Recursion: A function calls itself.
+
+References: Variables refer to objects in memory.
+
+Exception handling: Manages runtime errors.
+
+File handling: Reads and writes files.
+
+Classes & objects: Organize code using object-oriented programming.
+
+Debugging: Finds and fixes errors.
+
+Time & space complexity: Measures algorithm efficiency.
+
+Study tip: Don't just memorize these definitions. Practise writing one small program for each topic without looking at the example. Especially focus on recursion, exception handling, file handling, and classes and objects, since they require understanding how code executes.
